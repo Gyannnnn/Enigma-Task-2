@@ -6,7 +6,11 @@ const app = express();
 const port = 4000;
 const pdfSample = require('./pdf-sample/index'); // Ensure this module returns a valid HTML string
 
-app.use(cors());
+app.use(cors({
+    origin: ["https://resumebuilderbygyana.vercel.app"],
+    methods: ["POST", "GET", "DELETE"], 
+    credentials: true 
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
