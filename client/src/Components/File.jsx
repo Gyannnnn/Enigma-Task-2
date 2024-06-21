@@ -85,7 +85,7 @@ const File = () => {
                       type:"application/pdf"
 
                     })
-                    saveAs(pdfblob,'Myresume.pdf')
+                    saveAs(pdfblob,'My_resume.pdf')
                   })
               }else{
                 setpage((currentpage) => currentpage + 1)
