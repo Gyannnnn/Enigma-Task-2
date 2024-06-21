@@ -77,8 +77,8 @@ const File = () => {
             
             onClick={() => {
               if(page===4){
-                axios.post("http://localhost:4000/create-pdf",formData)
-                .then(()=>axios.get('http://localhost:4000/fetch-pdf',
+                axios.post("https://resume-api-sand.vercel.app/create-pdf",formData)
+                .then(()=>axios.get('https://resume-api-sand.vercel.app/fetch-pdf',
                   {responseType:'blob'}))
                   .then((res)=>{
                     const pdfblob = new Blob([res.data],{
