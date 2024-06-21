@@ -53,7 +53,7 @@ const File = () => {
       return <Experiance formData={formData} setformData={setformData} />;
     } else if (page === 3) {
       return <Project formData={formData} setformData={setformData} />;
-    } else {
+    } else if(page === 4) {
       return <Extras formData={formData} setformData={setformData} />;
     }
   };
@@ -74,10 +74,25 @@ const File = () => {
           </button>
           <button
             className="bg-blue-500 text-white px-7 py-1 rounded-md ml-2 hover:bg-blue-400"
-            disabled={page === 4}
-            onClick={() => setpage((currentpage) => currentpage + 1)}
+            
+            onClick={() => {
+              if(page===4){
+                axios.post("http://localhost:4000/create-pdf",formData)
+                .then(()=>axios.get('http://localhost:4000/fetch-pdf',
+                  {responseType:'blob'}))
+                  .then((res)=>{
+                    const pdfblob = new Blob([res.data],{
+                      type:"application/pdf"
+
+                    })
+                    saveAs(pdfblob,'Myresume.pdf')
+                  })
+              }else{
+                setpage((currentpage) => currentpage + 1)
+              }
+            }}
           >
-            Next
+           {page ===4 ? 'Download Pdf ' : 'Next' }
           </button>
         </div>
       </div>

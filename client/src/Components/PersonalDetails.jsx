@@ -15,7 +15,7 @@ const PersonalDetails = ({formData,setformData}) => {
             placeholder="Enter Your Name"
             value={formData.name}
             onChange={(e)=>{
-              setformData({...formData, name: e.target.value})
+              setformData({...formData, name:e.target.value})
 
             }}
           />
