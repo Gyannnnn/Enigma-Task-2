@@ -4,6 +4,8 @@ import Experiance from "./Experiance";
 import Extras from "./Extras";
 import PersonalDetails from "./PersonalDetails";
 import Project from "./Project";
+import axios from 'axios';
+import {saveAs} from "file-saver"
 
 const File = () => {
   const [formData, setformData] = useState({
@@ -44,37 +46,39 @@ const File = () => {
   const [page, setpage] = useState(0);
   const pageDisplay = () => {
     if (page === 0) {
-      return <PersonalDetails />;
+      return <PersonalDetails formData={formData} setformData={setformData} />;
     } else if (page === 1) {
-      return <Education />;
+      return <Education formData={formData} setformData={setformData} />;
     } else if (page === 2) {
-      return <Experiance />;
+      return <Experiance formData={formData} setformData={setformData} />;
     } else if (page === 3) {
-      return <Project />;
+      return <Project formData={formData} setformData={setformData} />;
     } else {
-      return <Extras />;
+      return <Extras formData={formData} setformData={setformData} />;
     }
   };
   return (
-    <div  className="w-full h-screen bg-zinc-900 flex flex-col justify-evenly">
-      <h1 className="text-white text-center text-3xl pt-2">Enter Your Details</h1>
+    <div className="w-full h-screen bg-zinc-900 flex flex-col justify-evenly">
+      <h1 className="text-white text-center text-3xl pt-4">
+        Enter Your Details To Generate Your Resume 📝
+      </h1>
       <div className="h-screen flex flex-col items-center justify-center gap-10">
         {pageDisplay()}
         <div>
-        <button
-          className="bg-blue-500 text-white px-4 py-1 rounded-md ml-2"
-          disabled={page === 0}
-          onClick={() => setpage((currentpage) => currentpage - 1)}
-        >
-          &lt;- Previous
-        </button>
-        <button
-          className="bg-blue-500 text-white px-7 py-1 rounded-md ml-2"
-          disabled={page === 4}
-          onClick={() => setpage((currentpage) => currentpage + 1)}
-        >
-          Next -&gt;
-        </button>
+          <button
+            className="bg-blue-500 text-white px-4 py-1 rounded-md ml-2 hover:bg-blue-400 "
+            disabled={page === 0}
+            onClick={() => setpage((currentpage) => currentpage - 1)}
+          >
+            Previous
+          </button>
+          <button
+            className="bg-blue-500 text-white px-7 py-1 rounded-md ml-2 hover:bg-blue-400"
+            disabled={page === 4}
+            onClick={() => setpage((currentpage) => currentpage + 1)}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

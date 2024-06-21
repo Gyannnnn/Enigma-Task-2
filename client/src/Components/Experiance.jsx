@@ -1,6 +1,6 @@
 import React from "react";
 
-const Experiance = () => {
+const Experiance = ({formData,setformData}) => {
   return (
     <div className="w-full min-h-96 bg-zinc-900 flex flex-col items-center content-center">
       <h1 className="text-white text-center">Enter Your Experiance Details 🧑‍💻</h1>
@@ -12,6 +12,10 @@ const Experiance = () => {
               className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
               type="text"
               placeholder="Enter Your first Job"
+              value={formData.Firstjob}
+              onChange={(e)=>{
+                setformData({...formData,Firstjob:e.target.value})
+              }}
             />
           </div>          
             <div className="flex">
@@ -20,6 +24,10 @@ const Experiance = () => {
                 className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
                 type="text"
                 placeholder="Enter Your Position"
+                value={formData.Firstjobposition}
+               onChange={(e)=>{
+                setformData({...formData,Firstjobposition:e.target.value})
+               }}
               />
             </div>
             <div className="flex">
@@ -29,6 +37,11 @@ const Experiance = () => {
                 name=""
                 id=""
                 placeholder="Describe Yor Post"
+                value={formData.Firstjobdescription}
+                onChange={(e)=>{
+                  setformData({...formData,Firstjobdescription:e.target.value})
+
+                }}
               ></textarea>
             </div>
             <div className="flex">
@@ -37,6 +50,10 @@ const Experiance = () => {
                 className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
                 type="text"
                 placeholder="Duration"
+                value={formData.Firstjobduration}
+                onChange={(e)=>{
+                  setformData({...formData,Firstjobduration:e.target.value})
+                }}
               />
             </div>
           
@@ -49,6 +66,10 @@ const Experiance = () => {
               className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
               type="text"
               placeholder="Enter Your second Job"
+              value={formData.Secondjob}
+              onChange={(e)=>{
+               setformData({...formData,Secondjob:e.target.value})
+              }}
             />
           </div>          
             <div className="flex">
@@ -57,6 +78,10 @@ const Experiance = () => {
                 className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
                 type="text"
                 placeholder="Enter Your Position"
+                value={formData.Secondjobposition}
+                onChange={(e)=>{
+                 setformData({...formData,Secondjobposition:e.target.value})
+                }}
               />
             </div>
             <div className="flex">
@@ -66,6 +91,11 @@ const Experiance = () => {
                 name=""
                 id=""
                 placeholder="Describe Yor Post"
+                value={formData.Secondjobdescription}
+                onChange={(e)=>{
+                  setformData({...formData,Secondjobdescription:e.target.value})
+
+                }}
               ></textarea>
             </div>
             <div className="flex">
@@ -74,6 +104,10 @@ const Experiance = () => {
                 className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
                 type="text"
                 placeholder="Duration"
+                value={formData.Secondjobduration}
+                onChange={(e)=>{
+                  setformData({...formData,Secondjobduration:e.target.value})
+                }}
               />
             </div>
         </div>

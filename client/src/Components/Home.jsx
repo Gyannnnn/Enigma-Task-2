@@ -11,10 +11,11 @@ const Home = () => {
           <span>Resume</span>
           <span className="text-green-700">Builder/&gt;</span>
         </h1>
+        <p className="text-white px-20">Build Your Own Resume</p>
       </div>
-      <div className="border border-cyan-400 rounded-lg h-28 w-80 text-white flex items-center justify-center gap-2">
+      <div className="border border-blue-700  rounded-lg h-28 w-80 text-white flex items-center justify-center gap-2">
         <Link to='/file'>
-          <IoIosAddCircleOutline className="text-cyan-400 cursor-pointer text-4xl" />
+          <IoIosAddCircleOutline className="text-blue-700 cursor-pointer text-4xl" />
         </Link>
         <h2 className="text-xl">Generate Your Resume</h2>
       </div>

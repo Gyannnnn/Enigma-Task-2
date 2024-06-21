@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Project = () => {
+const Project = ({formData,setformData}) => {
   return (
     <div className="w-full min-h-96 bg-zinc-900 flex flex-col items-center">
       <h1 className="text-white text-center">Enter Your Project Details 🛠️</h1>
@@ -12,6 +12,10 @@ const Project = () => {
               className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
               type="text"
               placeholder="Project 1 Title"
+              value={formData.Project1title}
+              onChange={(e)=>{
+                setformData({...formData,Project1title:e.target.value})
+              }}
             />
           </div>          
             <div className="flex">
@@ -20,6 +24,10 @@ const Project = () => {
                 className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
                 type="text"
                 placeholder="Project 1 Link"
+                value={formData.Project1link}
+              onChange={(e)=>{
+                setformData({...formData,Project1link:e.target.value})
+              }}
               />
             </div>
             <div className="flex">
@@ -29,6 +37,10 @@ const Project = () => {
                 name=""
                 id=""
                 placeholder="Describe Your Project"
+                value={formData.Project1description}
+              onChange={(e)=>{
+                setformData({...formData,Project1description:e.target.value})
+              }}
               ></textarea>
             </div>
                      
@@ -41,6 +53,10 @@ const Project = () => {
               className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
               type="text"
               placeholder="Project 2 Title"
+              value={formData.Project2title}
+              onChange={(e)=>{
+                setformData({...formData,Project2title:e.target.value})
+              }}
             />
           </div>          
             <div className="flex">
@@ -49,6 +65,10 @@ const Project = () => {
                 className="bg-zinc-900 outline-none border-b-2 border-b-blue-500 text-white px-4 text-2xl max-sm:text-xl max-sm:w-60"
                 type="text"
                 placeholder="Project 2 Link"
+                value={formData.Project2link}
+              onChange={(e)=>{
+                setformData({...formData,Project2link:e.target.value})
+              }}
               />
             </div>
             <div className="flex">
@@ -58,6 +78,10 @@ const Project = () => {
                 name=""
                 id=""
                 placeholder="Describe Your Project"
+                value={formData.Project2description}
+              onChange={(e)=>{
+                setformData({...formData,Project2description:e.target.value})
+              }}
               ></textarea>
             </div>            
         </div>
