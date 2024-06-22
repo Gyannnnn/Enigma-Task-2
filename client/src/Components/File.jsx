@@ -4,8 +4,8 @@ import Experiance from "./Experiance";
 import Extras from "./Extras";
 import PersonalDetails from "./PersonalDetails";
 import Project from "./Project";
-import axios from 'axios';
-import {saveAs} from "file-saver"
+import axios from "axios";
+import { saveAs } from "file-saver";
 
 const File = () => {
   const [formData, setformData] = useState({
@@ -53,7 +53,7 @@ const File = () => {
       return <Experiance formData={formData} setformData={setformData} />;
     } else if (page === 3) {
       return <Project formData={formData} setformData={setformData} />;
-    } else if(page === 4) {
+    } else if (page === 4) {
       return <Extras formData={formData} setformData={setformData} />;
     }
   };
@@ -74,25 +74,30 @@ const File = () => {
           </button>
           <button
             className="bg-blue-500 text-white px-7 py-1 rounded-md ml-2 hover:bg-blue-400"
-            
             onClick={() => {
-              if(page===4){
-                axios.post("https://resume-api-sand.vercel.app/create-pdf",formData)
-                .then(()=>axios.get('https://resume-api-sand.vercel.app/fetch-pdf',
-                  {responseType:'blob'}))
-                  .then((res)=>{
-                    const pdfblob = new Blob([res.data],{
-                      type:"application/pdf"
-
+              if (page === 4) {
+                axios
+                  .post("http://localhost:4000/create-pdf", formData)
+                  .then(() =>
+                    axios.get("http://localhost:4000/fetch-pdf", {
+                      responseType: "blob",
                     })
-                    saveAs(pdfblob,'Resume.pdf')
-                  })
+                  )
+                  .then((res) => {
+                    const pdfBlob = new Blob([res.data], {
+                      type: "application/pdf",
+                    });
+                    saveAs(pdfBlob, "My_resume.pdf");
+                  });
+                  console.log(formData)
+                  alert("Your Resume Is Downloading ..........")
+                  
               }else{
-                setpage((currentpage) => currentpage + 1)
+                setpage((currentpage)=>currentpage+1)
               }
             }}
           >
-           {page ===4 ? 'Download Pdf ' : 'Next' }
+            {page === 4 ? "Download Pdf" : "Next"}
           </button>
         </div>
       </div>
