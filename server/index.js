@@ -7,11 +7,15 @@ const pdfTemplate = require('./pdf-sample/index');
 const app = express();
 const port = 4000;
 
-const allowedOrigins = ["http://localhost:5173", "https://enigma-task-2.vercel.app", "https://enigma-task-2.vercel.app/"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://enigma-task-2.vercel.app",
+  "https://enigma-task-2.vercel.app/"
+];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // allow requests with no origin - like mobile apps, curl, etc
+    // Allow requests with no origin - like mobile apps, curl, etc.
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
@@ -30,7 +34,7 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.post("/create-pdf", (req, res) => {
+app.post("/create-pdf", async (req, res) => {
   try {
     const htmlContent = pdfTemplate(req.body);
     console.log('Request Body:', req.body);
@@ -53,6 +57,7 @@ app.post("/create-pdf", (req, res) => {
 
 app.get("/fetch-pdf", (req, res) => {
   const filePath = path.join(__dirname, 'My_resume.pdf');
+
   res.download(filePath, 'My_resume.pdf', (err) => {
     if (err) {
       console.error("Error downloading PDF:", err);
