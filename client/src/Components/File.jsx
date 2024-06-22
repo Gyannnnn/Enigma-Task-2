@@ -77,9 +77,9 @@ const File = () => {
             onClick={() => {
               if (page === 4) {
                 axios
-                  .post("http://localhost:4000/create-pdf", formData)
+                  .post("https://api-wine-beta.vercel.app/create-pdf", formData)
                   .then(() =>
-                    axios.get("http://localhost:4000/fetch-pdf", {
+                    axios.get("https://api-wine-beta.vercel.app/fetch-pdf", {
                       responseType: "blob",
                     })
                   )
