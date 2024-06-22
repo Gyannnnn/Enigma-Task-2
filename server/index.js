@@ -7,7 +7,7 @@ const pdfTemplate = require('./pdf-sample/index');
 const app = express();
 const port = 4000;
 
-const allowedOrigins = ["http://localhost:5173", "https://resume-builder-app-liard.vercel.app", "https://resumebuilderbygyana.vercel.app"];
+const allowedOrigins = ["http://localhost:5173", "https://enigma-task-2.vercel.app", "https://enigma-task-2.vercel.app/"];
 
 app.use(cors({
   origin: function (origin, callback) {
