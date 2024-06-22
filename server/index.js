@@ -15,7 +15,6 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin - like mobile apps, curl, etc.
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
@@ -34,13 +33,13 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.post("/create-pdf", async (req, res) => {
+app.post("/create-ppdf", async (req, res) => {
   try {
     const htmlContent = pdfTemplate(req.body);
     console.log('Request Body:', req.body);
     console.log('Generated HTML:', htmlContent);
 
-    pdf.create(htmlContent, {}).toFile("My_resume.pdf", (err) => {
+    pdf.create(htmlContent, {}).toFile("My_resume.pdf", (err, res) => {
       if (err) {
         console.error("Error generating PDF:", err);
         return res.status(500).send('Error generating PDF');
