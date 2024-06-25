@@ -76,9 +76,9 @@ const File = () => {
             onClick={() => {
               if (page === 4) {
                 axios
-                  .post("http://localhost:4000/create-pdf", formData)
+                  .post("https://enigma-task-2-api.vercel.app/create-pdf", formData)
                   .then(() =>
-                    axios.get("http://localhost:4000/fetch-pdf", {
+                    axios.get("https://enigma-task-2-api.vercel.app/fetch-pdf", {
                       responseType: "blob",
                     })
                   )

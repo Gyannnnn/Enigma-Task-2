@@ -8,7 +8,12 @@ const app = express();
 const port = process.env.PORT || 4000; // Use dynamic port for hosting
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+  origin: [""],
+  methods: ["POST", "GET"],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
