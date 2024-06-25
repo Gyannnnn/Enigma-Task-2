@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Education from "./Education";
-import Experiance from "./Experiance";
+import Experience from "./Experience";
 import Extras from "./Extras";
 import PersonalDetails from "./PersonalDetails";
 import Project from "./Project";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { saveAs } from "file-saver";
 
 const File = () => {
-  const [formData, setformData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -40,22 +40,39 @@ const File = () => {
     extra_1: "",
     extra_2: "",
   });
-  
-  const [page, setpage] = useState(0);
+
+  const [page, setPage] = useState(0);
   const pageDisplay = () => {
     if (page === 0) {
-      return <PersonalDetails formData={formData} setformData={setformData} />;
+      return <PersonalDetails formData={formData} setFormData={setFormData} />;
     } else if (page === 1) {
-      return <Education formData={formData} setformData={setformData} />;
+      return <Education formData={formData} setFormData={setFormData} />;
     } else if (page === 2) {
-      return <Experiance formData={formData} setformData={setformData} />;
+      return <Experience formData={formData} setFormData={setFormData} />;
     } else if (page === 3) {
-      return <Project formData={formData} setformData={setformData} />;
+      return <Project formData={formData} setFormData={setFormData} />;
     } else if (page === 4) {
-      return <Extras formData={formData} setformData={setformData} />;
+      return <Extras formData={formData} setFormData={setFormData} />;
     }
   };
-  
+
+  const downloadPDF = () => {
+    axios
+      .post("https://enigma-task-2-api.vercel.app/create-pdf", formData)
+      .then(() =>
+        axios.get("https://enigma-task-2-api.vercel.app/fetch-pdf", {
+          responseType: "blob",
+        })
+      )
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+        saveAs(pdfBlob, "My_resume.pdf");
+      })
+      .catch((err) => {
+        console.error("Error during PDF creation and download", err);
+      });
+  };
+
   return (
     <div className="w-full h-screen bg-zinc-900 flex flex-col justify-evenly">
       <h1 className="text-white text-center text-3xl pt-4">
@@ -65,9 +82,9 @@ const File = () => {
         {pageDisplay()}
         <div>
           <button
-            className="bg-blue-500 text-white px-4 py-1 rounded-md ml-2 hover:bg-blue-400 "
+            className="bg-blue-500 text-white px-4 py-1 rounded-md ml-2 hover:bg-blue-400"
             disabled={page === 0}
-            onClick={() => setpage((currentpage) => currentpage - 1)}
+            onClick={() => setPage((currentPage) => currentPage - 1)}
           >
             Previous
           </button>
@@ -75,23 +92,11 @@ const File = () => {
             className="bg-blue-500 text-white px-7 py-1 rounded-md ml-2 hover:bg-blue-400"
             onClick={() => {
               if (page === 4) {
-                axios
-                  .post("https://enigma-task-2-api.vercel.app/create-pdf", formData)
-                  .then(() =>
-                    axios.get("https://enigma-task-2-api.vercel.app/fetch-pdf", {
-                      responseType: "blob",
-                    })
-                  )
-                  .then((res) => {
-                    const pdfBlob = new Blob([res.data], {
-                      type: "application/pdf",
-                    });
-                    saveAs(pdfBlob, "My_resume.pdf");
-                  });
-                  console.log(formData);
-                  alert("Your Resume Is Downloading ..........");
+                downloadPDF();
+                console.log(formData);
+                alert("Your Resume Is Downloading ..........");
               } else {
-                setpage((currentpage) => currentpage + 1);
+                setPage((currentPage) => currentPage + 1);
               }
             }}
           >

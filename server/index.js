@@ -2,12 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const pdf = require("html-pdf");
 const path = require("path");
-const pdfTemplate = require("./pdf-sample/index"); // Ensure this path is correct
+const pdfTemplate = require("./pdf-sample/index");
 
 const app = express();
-const port = process.env.PORT || 4000; // Use dynamic port for hosting
+const port = process.env.PORT || 4000;
 
-// Enable CORS
 app.use(cors({
   origin: ["https://enigma-task-2.vercel.app"],
   methods: ["POST", "GET"],
@@ -27,7 +26,7 @@ app.post("/create-pdf", (req, res) => {
     console.log("Request Body:", req.body);
     console.log("Generated HTML:", htmlContent);
 
-    pdf.create(htmlContent, {}).toFile("My_resume.pdf", (err, result) => {
+    pdf.create(htmlContent, {}).toFile(path.join(__dirname, "My_resume.pdf"), (err, result) => {
       if (err) {
         console.error("Error generating PDF:", err);
         return res.status(500).send("Error generating PDF");
