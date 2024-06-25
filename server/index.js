@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const pdf = require("html-pdf");
 const path = require("path");
-const pdfTemplate = require("./pdf-sample/index")
+const pdfTemplate = require("./pdf-sample/index");
 
 const app = express();
 const port = process.env.PORT || 4000;
