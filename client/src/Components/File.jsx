@@ -15,7 +15,6 @@ const File = () => {
     linkedin: "",
     github: "",
     skills: "",
-
     exp1_org: "",
     exp1_pos: "",
     exp1_desc: "",
@@ -24,14 +23,12 @@ const File = () => {
     exp2_pos: "",
     exp2_desc: "",
     exp2_dur: "",
-
     proj1_title: "",
     proj1_link: "",
     proj1_desc: "",
     proj2_title: "",
     proj2_link: "",
     proj2_desc: "",
-
     edu1_school: "",
     edu1_year: "",
     edu1_qualification: "",
@@ -43,6 +40,7 @@ const File = () => {
     extra_1: "",
     extra_2: "",
   });
+  
   const [page, setpage] = useState(0);
   const pageDisplay = () => {
     if (page === 0) {
@@ -57,6 +55,7 @@ const File = () => {
       return <Extras formData={formData} setformData={setformData} />;
     }
   };
+  
   return (
     <div className="w-full h-screen bg-zinc-900 flex flex-col justify-evenly">
       <h1 className="text-white text-center text-3xl pt-4">
@@ -77,9 +76,9 @@ const File = () => {
             onClick={() => {
               if (page === 4) {
                 axios
-                  .post("https://api-wine-beta.vercel.app/create-pdf", formData)
+                  .post("http://localhost:4000/create-pdf", formData)
                   .then(() =>
-                    axios.get("https://api-wine-beta.vercel.app/fetch-pdf", {
+                    axios.get("http://localhost:4000/fetch-pdf", {
                       responseType: "blob",
                     })
                   )
@@ -89,11 +88,10 @@ const File = () => {
                     });
                     saveAs(pdfBlob, "My_resume.pdf");
                   });
-                  console.log(formData)
-                  alert("Your Resume Is Downloading ..........")
-                  
-              }else{
-                setpage((currentpage)=>currentpage+1)
+                  console.log(formData);
+                  alert("Your Resume Is Downloading ..........");
+              } else {
+                setpage((currentpage) => currentpage + 1);
               }
             }}
           >
