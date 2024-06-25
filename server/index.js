@@ -9,7 +9,7 @@ const port = process.env.PORT || 4000; // Use dynamic port for hosting
 
 // Enable CORS
 app.use(cors({
-  origin: [""],
+  origin: ["https://enigma-task-2.vercel.app"],
   methods: ["POST", "GET"],
   credentials: true
 }));
