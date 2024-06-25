@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Education from "./Education";
 import Experience from "./Experience";
-import Extras from "./Extras"
+import Extras from "./Extras";
 import PersonalDetails from "./PersonalDetails";
 import Project from "./Project";
 import axios from "axios";
