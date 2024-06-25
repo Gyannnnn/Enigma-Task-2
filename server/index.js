@@ -2,10 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const pdf = require("html-pdf");
 const path = require("path");
-const pdfTemplate = require("./pdf-sample/index");
+const pdfTemplate = require("./pdf-sample/index"); // Ensure this path is correct
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000; // Use dynamic port for hosting
 
 // Enable CORS
 app.use(cors());
@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.post("/create-pdf", async (req, res) => {
+app.post("/create-pdf", (req, res) => {
   try {
     const htmlContent = pdfTemplate(req.body);
     console.log("Request Body:", req.body);
@@ -47,8 +47,6 @@ app.get("/fetch-pdf", (req, res) => {
     }
   });
 });
-
-app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
